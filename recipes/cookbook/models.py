@@ -24,13 +24,15 @@ class Author(models.Model):
     nickname = models.CharField(max_length=100)
     firstname = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100, default="None")
     reg_date = models.DateTimeField(auto_now_add=True)
 
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100)             # - Название
     description = models.CharField(max_length=100)      # - Описание
-    steps = models.TextField(max_length=1000)           # - Шаги приготовления
+    ingredients = models.CharField(max_length=2000, default="...")
+    steps = models.TextField(max_length=2000)           # - Шаги приготовления
     duration = models.PositiveIntegerField()            # - Время приготовления
     image = models.ImageField(                          # - Изображение
         upload_to='images/', default=None, null=True)
