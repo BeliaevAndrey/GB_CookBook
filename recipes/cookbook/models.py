@@ -39,9 +39,9 @@ class Recipe(models.Model):
     add_date = models.DateTimeField(auto_now_add=True)
 
 
-class Category(models.Model):
-    pass
-
-
-class Relations(models.Model):
-    pass
+# class Category(models.Model):
+#     title
+#
+#
+# class Relations(models.Model):
+#     pass
