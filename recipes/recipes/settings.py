@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'recipes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'andrew107021$default',
+        'NAME': 'andrew107021$cookbook',
         'USER': 'andrew107021',
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
         'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
