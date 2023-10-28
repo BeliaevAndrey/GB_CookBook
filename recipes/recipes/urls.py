@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('cookbook/', include('cookbook.urls')),
+    path('', include('cookbook.urls')),
+    path('index/', include('cookbook.urls')),
     path('admin/', admin.site.urls),
 ]
