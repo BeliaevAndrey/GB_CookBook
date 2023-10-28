@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> {% block  %} {{ title }} {% endblock %} </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <title> {% block title %} {{ title }} {% endblock %} </title>
 </head>
 <body>
 
-{% block  %}
-    Some content to appear here...
+{% block content %}
+Some content to appear here...
 {% endblock %}
-
+<footer>
+    <div><p>&copy; 2023 by Andrew</p></div>
+</footer>
 </body>
 </html>
