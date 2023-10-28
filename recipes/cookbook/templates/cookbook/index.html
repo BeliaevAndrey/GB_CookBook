@@ -4,13 +4,11 @@
 
 {% block content %}
 <div><h2>Cook Book</h2></div>
+<div><h3> {{ title }}  </h3></div>
 <div>
-    <ul>5 random recipes
-        <li>one</li>
-        <li>two</li>
-        <li>three</li>
-        <li>four</li>
-        <li>five</li>
-    </ul>
+    <h3>Ингредиенты</h3>
+    {{ ingredients }}
+    <h3>Шаги приготовления</h3>
+    {{ steps }}
 </div>
 {% endblock %}
