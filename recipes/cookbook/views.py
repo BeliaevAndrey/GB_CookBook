@@ -5,9 +5,10 @@ from .models import Recipe, Author
 
 
 def index(request):
-    print(request)
-    recipes = get_list_or_404(Recipe)
-    recipe = recipes[0]
+    recipes = list(Recipe.objects.all())
+    print(recipes)
+    recipe = recipes[1]
+
     print(recipes)
     context = {
         "title": recipe.name,
