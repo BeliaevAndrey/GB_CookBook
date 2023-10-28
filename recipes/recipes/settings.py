@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'andrew107021$cookbook',
         'USER': 'andrew107021',
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
         # 'OPTIONS': {
         #     'init-command': "SET NAMES 'utf8mb4; SET sql_mode='STRICT_TRANS_TABLES'",
         #     'charset': 'utf8mb4',
