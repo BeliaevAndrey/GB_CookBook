@@ -93,12 +93,9 @@ WSGI_APPLICATION = 'recipes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'andrew107021$cookbook',
-        'NAME': 'cookbook',
-        # 'USER': 'andrew107021',
-        'USER': 'andrew',
+        'NAME': 'andrew107021$cookbook',
+        'USER': 'andrew107021',
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        # 'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
         'HOST': 'localhost',
         # 'OPTIONS': {
         #     'init-command': "SET NAMES 'utf8mb4; SET sql_mode='STRICT_TRANS_TABLES'",
