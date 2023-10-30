@@ -16,9 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', include('cookbook.urls')),
-    path('index/', include('cookbook.urls')),
+    path('cookbook/', include('cookbook.urls')),
+    path('', RedirectView.as_view(url='/cookbook/', permanent=True)),
     path('admin/', admin.site.urls),
 ]
+
+# old auto-generated
+# ===========
+# urlpatterns = [
+#     path('', include('cookbook.urls')),
+#     path('index/', include('cookbook.urls')),
+#     path('admin/', admin.site.urls),
+# ]
