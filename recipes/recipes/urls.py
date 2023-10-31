@@ -17,11 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('cookbook/', include('cookbook.urls')),
     path('', RedirectView.as_view(url='/cookbook/', permanent=True)),
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls'))
 ]
 
 # old auto-generated

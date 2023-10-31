@@ -20,3 +20,13 @@ class CustomUserChangeForm(UserChangeForm):
         email = forms.EmailField()
         model = CustomUser
         fields = ['username', 'email', 'password']
+
+
+class LoginForm(forms.Form):
+    """ User welcome form """
+    pass
+
+
+class RegisterForm(forms.Form):
+    """ User register form"""
+    pass

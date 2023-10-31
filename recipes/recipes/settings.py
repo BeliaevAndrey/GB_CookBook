@@ -65,7 +65,7 @@ ROOT_URLCONF = 'recipes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],      # appended new path
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -162,3 +162,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+LOGIN_REDIRECT_URL = 'index'     # new added redirection
+LOGOUT_REDIRECT_URL = 'index'     # new added redirection
