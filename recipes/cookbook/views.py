@@ -5,7 +5,6 @@ from .forms import AddRecipeForm
 from .models import Recipe
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractUser
 
 
 def index(request):
@@ -28,7 +27,7 @@ def index(request):
                   context=context)
 
 
-@login_required()
+@login_required(login_url='login')
 def add_recipe_form(request):
     title = "Add recipe"
     message = ""
@@ -41,7 +40,7 @@ def add_recipe_form(request):
             duration = form.cleaned_data['duration']
             ingredients = form.cleaned_data['ingredients']
             author = get_user_model().objects.get(pk=request.user.pk)
-            print(f'{type(author) = } {author} {isinstance(author, AbstractUser)}')
+            # print(f'{type(author) = } {author} {isinstance(author, AbstractUser)}')
             Recipe(
                 name=name,
                 description=description,

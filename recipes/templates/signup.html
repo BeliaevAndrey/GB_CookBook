@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}"/>
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h3>Регистрация</h3>
+<form action="" method="post" class="modif">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <input type="submit" value="Сохранить" class="form_button">
+</form>
+{% endblock %}

@@ -24,7 +24,8 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/cookbook/', permanent=True)),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls'))
+    path('login/', RedirectView.as_view(url='users/login/'), name='login'),
+    path('users/', include('django.contrib.auth.urls')),
 ]
 
 # old auto-generated

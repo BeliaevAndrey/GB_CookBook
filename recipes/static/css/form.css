@@ -1,0 +1,41 @@
+h3 {
+    font-weight: 800px;
+}
+
+input{
+    background-color: #ccc;
+    font-weight:800px;
+    display: grid:
+}
+
+label {
+
+}
+
+.helptext {
+    display: none;
+}
+
+label {
+    display: grid;
+}
+
+.modif {
+    display: grid;
+    align-items: left;
+    grid-template-columns: repeat(1, 360px);
+    grid-template-rows: 40px;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.form_button {
+    font-weight: 400;
+    padding: 10px;
+}
+
+li {
+    marker: none;
+    font-size: 10;
+    display: block;
+}

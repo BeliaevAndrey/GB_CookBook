@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
+    <title> {% block title %} {{ title }} {% endblock %} </title>
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="head"><h3>Cook-book</h3></div>
+        <div class="r_align">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Выход</a>
+            {% else %}
+            <a href="{% url 'login' %}">Вход</a>
+            {% endif %}
+            <a href="{% url 'signup' %}">Регистрация</a>
+        </div>
+    </div>
+</header>
+<div class="content">
+    {% block content %}
+    Some content to appear here...
+    {% endblock %}
+</div>
+<footer>
+    <div><p>&copy; 2023 by Andrew</p></div>
+</footer>
+</body>
+</html>
