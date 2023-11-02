@@ -9,25 +9,41 @@
 </head>
 <body>
 <header>
-    <div class="header">
-        <div class="head"><h3>Cook-book</h3></div>
-        <div class="r_align">
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">Выход</a>
-            {% else %}
-            <a href="{% url 'login' %}">Вход</a>
-            {% endif %}
-            <a href="{% url 'signup' %}">Регистрация</a>
+    <div class="header__container">
+        <a href="{% url 'index' %}">
+        <div class="head l_align">
+            <h1 class="header__main">Cook-book</h1>
         </div>
+        </a>
+        <div class="service">
+            {% if user.is_authenticated %}
+            <div class="srv__button_div">
+            <a class="srv__link" href="{% url 'logout' %}">Выход</a>
+            </div>
+            {% else %}
+            <div class="srv__button_div">
+            <a class="srv__link" href="{% url 'login' %}">Вход</a>
+            {% endif %}
+            </div>
+            {% if not user.is_authenticated %}
+            <div class="srv__button_div">
+            <a class="srv__link" href="{% url 'signup' %}">Регистрация</a>
+            </div>
+            {% endif %}
+        </div>
+
     </div>
+
 </header>
+
 <div class="content">
     {% block content %}
     Some content to appear here...
     {% endblock %}
 </div>
+
 <footer>
-    <div><p>&copy; 2023 by Andrew</p></div>
+    <div><p>&copy; 2023</p></div>
 </footer>
 </body>
 </html>

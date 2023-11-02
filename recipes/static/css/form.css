@@ -1,15 +1,8 @@
-h3 {
+.form__header {
     font-weight: 800px;
-}
-
-input{
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: #ccc;
-    font-weight:800px;
-    display: grid:
-}
-
-label {
-
 }
 
 .helptext {
@@ -29,8 +22,18 @@ label {
     padding-left: 20px;
 }
 
+input{
+    width: 200px;
+    background-color: #eee;
+    font-weight:800px;
+    display: grid;
+    border: solid 1px;
+    border-radius: 3px;
+}
+
 .form_button {
-    font-weight: 400;
+    background: #ccc;
+    font-weight: 600;
     padding: 10px;
 }
 

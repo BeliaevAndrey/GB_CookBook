@@ -3,12 +3,24 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div><h2>Cook Book</h2></div>
-<div><h3> {{ title }}  </h3></div>
+<div><h2 class="page__title"> {{ title }} </h2></div>
+<hr>
 <div>
-    <h3>Ингредиенты</h3>
-    {{ ingredients }}
-    <h3>Шаги приготовления</h3>
-    {{ steps }}
+    {% for recipe in recipes %}
+    <div class="recipe__div">
+        <div class="recipe__text">
+        <h3 class="recipe__head">{{ recipe.name }}</h3>
+        <h3>Описание</h3>
+        {{ recipe.description }}
+        <h3>Время приготовления</h3>
+        {{ recipe.duration }} минут.
+        <h3>Автор</h3>
+        {{ recipe.author }}
+        </div>
+        <div class="recipe__image">
+
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

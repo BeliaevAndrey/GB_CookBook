@@ -1,5 +1,6 @@
 from django.shortcuts import (render,
                               HttpResponse)
+from random import choices
 
 from .forms import AddRecipeForm
 from .models import Recipe
@@ -12,15 +13,11 @@ def index(request):
     if not recipes:
         return render(request,
                       'cookbook/index_empty.html')
-    print(recipes)
-    recipe = recipes[1]
-
+    if len(recipes) > 5:
+        choices(recipes, k=5)
     context = {
-        "title": recipe.name,
-        "description": recipe.description,
-        "ingredients": recipe.ingredients,
-        "steps": recipe.steps,
-        "duration": recipe.steps,
+        'title': 'Случайные рецепты',
+        'recipes': recipes,
     }
     return render(request,
                   'cookbook/index.html',
@@ -40,7 +37,6 @@ def add_recipe_form(request):
             duration = form.cleaned_data['duration']
             ingredients = form.cleaned_data['ingredients']
             author = get_user_model().objects.get(pk=request.user.pk)
-            # print(f'{type(author) = } {author} {isinstance(author, AbstractUser)}')
             Recipe(
                 name=name,
                 description=description,
