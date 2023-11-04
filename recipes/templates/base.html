@@ -8,42 +8,51 @@
     <title> {% block title %} {{ title }} {% endblock %} </title>
 </head>
 <body>
-<header>
-    <div class="header__container">
-        <a href="{% url 'index' %}">
-        <div class="head l_align">
-            <h1 class="header__main">Cook-book</h1>
-        </div>
-        </a>
-        <div class="service">
-            {% if user.is_authenticated %}
-            <div class="srv__button_div">
-            <a class="srv__link" href="{% url 'logout' %}">Выход</a>
+<div class="central_main">
+    <header>
+        <div class="header__container">
+            <a href="{% url 'index' %}">
+                <div class="head l_align">
+                    <h1 class="header__main">Cook-book</h1>
+                </div>
+            </a>
+            <div class="service">
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">
+                    <div class="srv__button_div">
+                        <p>Выход</p>
+                    </div>
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <div class="srv__button_div">
+                        <p>Вход</p>
+                    </div>
+                </a>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <a href="{% url 'signup' %}">
+                    <div class="srv__button_div">
+                        <p>Регистрация</p>
+                    </div>
+                </a>
+                {% endif %}
             </div>
-            {% else %}
-            <div class="srv__button_div">
-            <a class="srv__link" href="{% url 'login' %}">Вход</a>
-            {% endif %}
-            </div>
-            {% if not user.is_authenticated %}
-            <div class="srv__button_div">
-            <a class="srv__link" href="{% url 'signup' %}">Регистрация</a>
-            </div>
-            {% endif %}
+
         </div>
 
+    </header>
+
+    <div class="content">
+        {% block content %}
+        Some content to appear here...
+        {% endblock %}
     </div>
 
-</header>
+    <footer>
+        <div><p>&copy; 2023</p></div>
+    </footer>
 
-<div class="content">
-    {% block content %}
-    Some content to appear here...
-    {% endblock %}
 </div>
-
-<footer>
-    <div><p>&copy; 2023</p></div>
-</footer>
 </body>
 </html>

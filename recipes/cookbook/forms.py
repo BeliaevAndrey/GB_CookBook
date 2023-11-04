@@ -9,4 +9,3 @@ class AddRecipeForm(forms.Form):
     ingredients = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     steps = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     duration = forms.IntegerField(min_value=1)
-

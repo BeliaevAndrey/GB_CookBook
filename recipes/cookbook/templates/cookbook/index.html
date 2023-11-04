@@ -6,21 +6,27 @@
 <div><h2 class="page__title"> {{ title }} </h2></div>
 <hr>
 <div>
+    {% if message %}
+    <div class="recipe__div">
+        <h3>{{ message }}</h3>
+    </div>
+    {% else %}
     {% for recipe in recipes %}
     <div class="recipe__div">
         <div class="recipe__text">
-        <h3 class="recipe__head">{{ recipe.name }}</h3>
-        <h3>Описание</h3>
-        {{ recipe.description }}
-        <h3>Время приготовления</h3>
-        {{ recipe.duration }} минут.
-        <h3>Автор</h3>
-        {{ recipe.author }}
+            <h3 class="recipe__head">{{ recipe.name }}</h3>
+            <h3>Описание</h3>
+            {{ recipe.description }}
+            <h3>Время приготовления</h3>
+            {{ recipe.duration }} минут.
+            <h3>Автор</h3>
+            {{ recipe.author }}
         </div>
         <div class="recipe__image">
 
         </div>
     </div>
     {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
