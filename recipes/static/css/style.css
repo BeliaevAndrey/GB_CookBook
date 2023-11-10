@@ -10,19 +10,12 @@ body {
     border-left: solid 1px;
     border-right: solid 1px;
     box-shadow: 10px 5px 5px gray;
-/*    display: grid;
-    grid-template-rows: 90px auto;
-    gap: 10px;*/
-
 }
 
 .central_main {
     background-color: rgb(240, 227, 210);
     max-width: 1024px;
     min-height: 100vh;
-/*    border-left: solid 2px green;
-    border-right: solid 2px green; */
-/*    box-shadow: 10px 5px 5px gray; */
     display: grid;
     grid-template-rows: 90px auto;
     gap: 10px;
@@ -98,10 +91,11 @@ a {
   margin-left: 20px;
   margin-right: 20px;
   margin-left: 20px;
-  display: flex;
-  align-content: stretch;
-  border: solid red;
-  flex-flow: row;
+  display: grid;
+  grid-template-columns: 70% auto;
+  background-color: rgb(245, 232, 225);
+  box-shadow: 10px 5px 5px gray;
+  gap: 10px;
 }
 
 .recipe__head {
@@ -112,15 +106,34 @@ a {
 }
 
 .recipe__text {
+    width: 70%;
     margin-left: 10px;
 }
 
 .recipe__image {
-    height: 150px;
-    width: 150px;
+    min-height: 150px;
+    min-width: 150px;
     border: solid 1px;
     margin-right: 10px;
 }
+
+.recipe__footer {
+    display: block;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.recipe__p_list_link {
+    padding: 5px;
+    height: 20px;
+    margin: auto 10px 10px auto;
+    text-align: center;
+    background-color: rgb(200, 200, 200);
+    border: solid 1px rgb(120, 120, 120);
+    border-radius: 5px;
+}
+
 footer {
     border-top: solid black 2px;
     height: 5%;
@@ -141,4 +154,44 @@ footer {
 .srv__button_div:hover {
     background-color: #000;
     color: #fff;
+}
+
+.recipe__author_sign {
+    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    width: auto;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.recipe__description {
+    margin: 10px;
+}
+.recipe__li {
+    margin: 10px;
+}
+
+.recipe__bottom_navi {
+    width: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.recipes__navi_pagination {
+    width: 49%;
+    display: flex;
+    align-items: right;
+}
+
+.recipe__p_navi {
+    width: 120px;
+    height: 20px;
+    text-align: center;
+    margin-left: 10px;
+    background-color: rgb(200, 200, 200);
+    border: solid 1px rgb(120, 120, 120);
+    border-radius: 5px;
 }

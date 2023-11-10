@@ -4,9 +4,22 @@
 
 {% block content %}
 <div>
-    <h4>{{ recipe.author }}</h4>
-    <h3>Recipe: {{ recipe.name }}</h3>
-
-    {{ recipe.content }}
+    <h3>{{ recipe.name }}</h3>
+    <p class="recipe__description">{{ recipe.description }}</p>
+    <h3>Ингредиенты</h3>
+    <ol>
+    {% for ingredient in ingredients %}
+        <li class="recipe__li">{{ ingredient }}</li>
+    {% endfor %}
+    </ol>
+    <h3>Шаги приготовления</h3>
+    <ol>
+    {% for step in step %}
+    <li class="recipe__li">{{ step }}</li>
+    {% endfor %}
+    </ol>
+    <hr>
+    <p>Средняя продолжительность приготовления: {{ recipe.duration }}</p>
+    <p class="recipe__author_sign">Разместил(а): {{ recipe.author }}</p>
 </div>
 {% endblock %}

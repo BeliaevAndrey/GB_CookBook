@@ -6,7 +6,12 @@
     <h3 class="form__header">Регистрация</h3>
     <form action="" method="post" class="modif">
         {% csrf_token %}
-        {{ form.as_div }}
+        <div>
+        <p>Имя</p><p>{{ form.username }}</p>
+        <p>Email</p><p>{{ form.email }}</p>
+        <p>Пароль</p><p>{{ form.password1 }}</p>
+        <p>Подтвердить пароль</p><p>{{ form.password2 }}</p>
+        </div>
         <input type="submit" value="Сохранить" class="form_button">
     </form>
 {% endblock %}

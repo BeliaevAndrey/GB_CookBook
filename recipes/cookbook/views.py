@@ -1,14 +1,16 @@
 from django.shortcuts import (render,
                               HttpResponse,
-                              HttpResponseRedirect)
-from random import choices
+                              HttpResponseRedirect,
+                              get_object_or_404,
+                              )
+from random import sample
 
 from .forms import AddRecipeForm
 from .models import Recipe
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView, ListView
 
 
 class Index(TemplateView):
@@ -20,42 +22,50 @@ class Index(TemplateView):
             context = {'title': 'Случайные рецепты', 'message': 'Здесь пока ничего нет.'}
             return context
         if len(recipes) > 5:
-            recipes = choices(recipes, k=5)
+            recipes = sample(recipes, k=5)
         context = {
             'title': 'Случайные рецепты',
             'recipes': recipes,
         }
         return context
 
+#
+# class AllRecipes(TemplateView):
+#     template_name = 'cookbook/index.html'
+#
+#     def get_context_data(self, **kwargs):
+#         recipes = list(Recipe.objects.all())
+#         if not recipes:
+#             context = {'title': 'Случайные рецепты', 'message': 'Здесь пока ничего нет.'}
+#             return context
+#         context = {
+#             'title': 'Случайные рецепты',
+#             'recipes': recipes,
+#         }
+#         return context
 
-class AllRecipes(TemplateView):
-    template_name = 'cookbook/index.html'
 
-    def get_context_data(self, **kwargs):
-        recipes = list(Recipe.objects.all())
-        if not recipes:
-            context = {'title': 'Случайные рецепты', 'message': 'Здесь пока ничего нет.'}
-            return context
-        context = {
-            'title': 'Случайные рецепты',
-            'recipes': recipes,
-        }
-        return context
+class AllRecipes(ListView):
+    model = Recipe
+    template_name = 'cookbook/all_recipes.html'
+    context_object_name = 'recipes'
+    paginate_by = 5
+    ordering = "pk"
+    extra_context = {"title": "Все рецепты"}
 
 
 class AddRecipe(LoginRequiredMixin, TemplateView):
     template_name = 'cookbook/add_recipe.html'
     login_url = 'login'
+    form_class = AddRecipeForm
 
-    # def __init__(self, request, **kwargs):
-    #     super().__init__(**kwargs)
-    #     self.request = request
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request, **kwargs):
         if request.method == 'POST':
             form = AddRecipeForm(self.request.POST)
-            print("!!" * 500)
-            print(f'DEBUG: {form.fields}')
             if form.is_valid():
                 name = form.cleaned_data['name']
                 description = form.cleaned_data['description']
@@ -71,15 +81,22 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
                     ingredients=ingredients,
                     author=author,
                 ).save()
-
         return HttpResponseRedirect('/index/')
 
-    def get_context_data(self, **kwargs):
-        title = 'Add recipe'
-        message = "Add a recipe"
-        form = AddRecipeForm()
-        context = {'form': form, 'title': title, 'message': message}
-        return context
+
+class RecipePage(DetailView):
+    template_name = 'cookbook/recipe.html'
+
+    def get(self, request, *args, **kwargs):
+        recipe = get_object_or_404(Recipe, pk=kwargs.get("pk"))
+        steps = recipe.steps.split("\n")
+        ingredients = recipe.ingredients.split("\n")
+        context = {
+            "recipe": recipe,
+            "steps": steps,
+            "ingredients": ingredients,
+        }
+        return render(request, self.template_name, context)
 
 
 # def index(request):
