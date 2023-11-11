@@ -31,7 +31,7 @@ from recipes.settings import AUTH_USER_MODEL
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = models.TextField(max_length=500)
     ingredients = models.CharField(max_length=2000, default="...")
     steps = models.TextField(max_length=2000)
     duration = models.PositiveIntegerField()

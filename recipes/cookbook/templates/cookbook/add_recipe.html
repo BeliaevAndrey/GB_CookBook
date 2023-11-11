@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
+<div><h2 class="page__title"> Добавление рецепта</h2><br></div>
 <form action="" method="post">
     {{ message }}
     {% csrf_token %}
-    {{ form.as_div }}
-    <input type="submit" value="Save Recipe" style="margin-top: 100px;">
+    <div>
+        <p class="recipe__label">Наименование:</p>
+        <p class="recipe__label">{{ form.name }}</p>
+        <p class="recipe__label">Описание:</p>
+        <p class="recipe__label">{{ form.description }}</p>
+        <p class="recipe__label">Ингредиенты:</p>
+        <p class="recipe__label">{{ form.ingredients }}</p>
+        <p class="recipe__label">Шаги приготовления:</p>
+        <p class="recipe__label">{{ form.steps }}</p>
+        <p class="recipe__label">Время приготовления :</p>
+        <p class="recipe__label">{{ form.duration }}</p>
+    </div>
+    <input type="submit" value="Сохранить" style="margin-top: 100px;">
 </form>
 {% endblock %}

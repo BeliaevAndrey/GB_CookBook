@@ -41,3 +41,23 @@ li {
     marker: none;
     display: block;
 }
+
+.recipe__label {
+    width: 200px;
+    display: flex;
+    margin-left: 10px;
+}
+
+.recipe__name {
+    width: 500px;
+    height: 14px;
+    max-height: 14px;
+    background-color: #eee;
+    margin: 10px;
+}
+.recipe__field {
+    width: 500px;
+    height: 100px;
+    background-color: #eee;
+    margin: 10px;
+}
