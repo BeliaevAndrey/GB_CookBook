@@ -3,15 +3,23 @@
 <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-    <h3 class="form__header">Регистрация</h3>
-    <form action="" method="post" class="modif">
-        {% csrf_token %}
-        <div>
-        <p>Имя</p><p>{{ form.username }}</p>
-        <p>Email</p><p>{{ form.email }}</p>
-        <p>Пароль</p><p>{{ form.password1 }}</p>
-        <p>Подтвердить пароль</p><p>{{ form.password2 }}</p>
+<h3 class="form__header">Регистрация</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="common__form">
+        <div class="service_forms__fields_div">
+            <p class="recipe__label">Имя</p>
+            <p class="recipe__label">{{ form.username }}</p>
+            <p class="recipe__label">Email</p>
+            <p class="recipe__label">{{ form.email }}</p>
+            <p class="recipe__label">Пароль</p>
+            <p class="recipe__label">{{ form.password1 }}</p>
+            <p class="recipe__label">Подтвердить пароль</p>
+            <p class="recipe__label">{{ form.password2 }}</p>
         </div>
-        <input type="submit" value="Сохранить" class="form_button">
-    </form>
+        <div class="service_forms__fields_div">
+            <input type="submit" value="Сохранить" class="form_button">
+        </div>
+    </div>
+</form>
 {% endblock %}

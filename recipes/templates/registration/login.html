@@ -6,8 +6,18 @@
     <form action="" method="post" class="modif">
         {{ message }}
         {% csrf_token %}
-        {{ form.as_div }}
-        <input type="submit" value="Войти" class="form_button">
+    <div class="common__form">
+        <div class="service_forms__fields_div">
+            <p class="recipe__label">Login</p>
+            <p class="recipe__label">{{ form.username }}</p>
+            <p class="recipe__label">Password</p>
+            <p class="recipe__label">{{ form.password }}</p>
+        </div>
+        <div class="service_forms__fields_div">
+            <input type="submit" value="Войти" class="form_button">
+        </div>
+    </div>
+
     </form>
 </div>
 {% endblock %}
