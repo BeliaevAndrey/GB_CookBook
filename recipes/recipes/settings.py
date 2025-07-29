@@ -103,23 +103,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'cookbook',
-#         # 'NAME': 'andrew107021$cookbook',
-#         'USER': 'andrew',
-#         # 'USER': 'andrew107021',
-#         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-#         'HOST': 'localhost',
-#         # 'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
-#         # 'OPTIONS': {
-#         #     'init-command': "SET NAMES 'utf8mb4; SET sql_mode='STRICT_TRANS_TABLES'",
-#         #     'charset': 'utf8mb4',
-#         # }
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -207,22 +190,17 @@ LOGGING = {
             'handlers': ['console', 'file'],
             'level': 'INFO',
         },
-        'myapp001': {
+        'recipes': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
         },
-        'myapp002': {
+        'cookbook': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
         },
-        'myapp003': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'myapp004': {
+        'users': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div><h2 class="page__title"> Добавление рецепта</h2><br></div>
@@ -14,8 +15,12 @@
         <p class="recipe__label">{{ form.ingredients }}</p>
         <p class="recipe__label">Шаги приготовления:</p>
         <p class="recipe__label">{{ form.steps }}</p>
-        <p class="recipe__label">Время приготовления :</p>
+        <p class="recipe__label">Время приготовления:</p>
         <p class="recipe__label">{{ form.duration }}</p>
+         <p class="recipe__label">Категория блюда:</p>
+        <p class="recipe__label">{{ form.category }}</p>
+        <p class="recipe__label">Добавить изображение:</p>
+        <p class="recipe__label">{{ form.image }}</p>
     </div>
     <input type="submit" value="Сохранить" style="margin-top: 100px;">
 </form>
