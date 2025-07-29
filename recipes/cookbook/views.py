@@ -38,6 +38,14 @@ class AllRecipes(ListView):
     extra_context = {"title": "Все рецепты"}
 
 
+class Categories(ListView):
+    model = Category
+    template_name = 'cookbook/categories.html'
+    context_object_name = 'category'
+    ordering = "pk"
+    extra_context = {"title": "Категории"}
+
+
 class AddRecipe(LoginRequiredMixin, TemplateView):
     template_name = 'cookbook/add_recipe.html'
     login_url = 'login'
