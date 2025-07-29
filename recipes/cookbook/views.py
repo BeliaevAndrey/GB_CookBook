@@ -59,6 +59,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
                 duration = form.cleaned_data['duration']
                 ingredients = form.cleaned_data['ingredients']
                 category = categories[form.cleaned_data['category']]
+                image = form.cleaned_data['image']
                 author = get_user_model().objects.get(pk=self.request.user.pk)
                 Recipe(
                     name=name,
@@ -68,6 +69,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
                     ingredients=ingredients,
                     author=author,
                     category=category,
+                    image=image,
                 ).save()
         return HttpResponseRedirect('/index/')
 
