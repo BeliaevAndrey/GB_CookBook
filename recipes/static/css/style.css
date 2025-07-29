@@ -255,3 +255,11 @@ footer {
     border: solid 1px rgb(120, 120, 120);
     border-radius: 5px;
 }
+
+.recipe__small_pic {
+    height: 150px;
+    width: 150px;
+    margin: 0px;
+    align-self: center;
+    vertical-align: middle;
+}

@@ -29,7 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'andrew107021.pythonanywhere.com',
+    '192.168.20.101',
+    '192.168.20.100',
 ]
 
 INTERNAL_IPS = [
@@ -93,20 +94,31 @@ WSGI_APPLICATION = 'recipes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cookbook',
-        # 'NAME': 'andrew107021$cookbook',
-        'USER': 'andrew',
-        # 'USER': 'andrew107021',
-        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': 'localhost',
-        # 'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
-        # 'OPTIONS': {
-        #     'init-command': "SET NAMES 'utf8mb4; SET sql_mode='STRICT_TRANS_TABLES'",
-        #     'charset': 'utf8mb4',
-        # }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'cookbook',
+#         # 'NAME': 'andrew107021$cookbook',
+#         'USER': 'andrew',
+#         # 'USER': 'andrew107021',
+#         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+#         'HOST': 'localhost',
+#         # 'HOST': 'andrew107021.mysql.pythonanywhere-services.com',
+#         # 'OPTIONS': {
+#         #     'init-command': "SET NAMES 'utf8mb4; SET sql_mode='STRICT_TRANS_TABLES'",
+#         #     'charset': 'utf8mb4',
+#         # }
+#     }
+# }
 
 
 # Password validation
@@ -165,3 +177,55 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'index'     # new added redirection
 LOGOUT_REDIRECT_URL = 'index'     # new added redirection
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(messagename)s'
+        },
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process} {thread} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': './log/django.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'myapp001': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'myapp002': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'myapp003': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'myapp004': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
