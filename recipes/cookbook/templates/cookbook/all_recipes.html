@@ -29,7 +29,7 @@
         </div>
         <div class="recipe__image">
             {% if recipe.image %}
-                <img class="recipe__small_pic" src="{{ recipe.image }}" alt="image for: {{ recipe.name }}">
+                <img class="recipe__small_pic" src="/media/{{ recipe.image }}" alt="image for: {{ recipe.name }}">
             {% else %}
                 <img class="recipe__small_pic" src="{% static 'images/no_photo.png' %}" alt="no photo">
             {% endif %}

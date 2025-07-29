@@ -9,7 +9,7 @@ from .forms import AddRecipeForm
 from .models import Recipe, Category
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, DetailView, ListView
+from django.views.generic import TemplateView, DetailView, ListView, CreateView
 
 
 class Index(TemplateView):
@@ -47,9 +47,9 @@ class Categories(ListView):
 
 
 class AddRecipe(LoginRequiredMixin, TemplateView):
+    form_class = AddRecipeForm
     template_name = 'cookbook/add_recipe.html'
     login_url = 'login'
-    form_class = AddRecipeForm
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
@@ -58,7 +58,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
     def post(self, request, **kwargs):
         categories = {f'{ctg.pk}': ctg for ctg in Category.objects.all()}
         if request.method == 'POST':
-            form = AddRecipeForm(self.request.POST)
+            form = AddRecipeForm(self.request.POST, self.request.FILES)
             if form.is_valid():
                 name = form.cleaned_data['name']
                 description = form.cleaned_data['description']
