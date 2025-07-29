@@ -7,7 +7,6 @@ from random import sample
 
 from .forms import AddRecipeForm
 from .models import Recipe, Category
-# from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, DetailView, ListView
