@@ -8,3 +8,5 @@ class AddRecipeForm(forms.Form):
     ingredients = forms.CharField(widget=forms.Textarea(attrs={'class': 'recipe__field'}))
     steps = forms.CharField(widget=forms.Textarea(attrs={'class': 'recipe__field'}))
     duration = forms.IntegerField(min_value=1)
+
+    image = forms.ImageField(required=False)

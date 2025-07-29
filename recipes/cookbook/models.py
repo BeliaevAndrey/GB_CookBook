@@ -29,6 +29,11 @@ from recipes.settings import AUTH_USER_MODEL
 #     reg_date = models.DateTimeField(auto_now_add=True)
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=2000)

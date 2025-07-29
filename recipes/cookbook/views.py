@@ -6,7 +6,7 @@ from django.shortcuts import (render,
 from random import sample
 
 from .forms import AddRecipeForm
-from .models import Recipe
+from .models import Recipe, Category
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -29,21 +29,6 @@ class Index(TemplateView):
         }
         return context
 
-#
-# class AllRecipes(TemplateView):
-#     template_name = 'cookbook/index.html'
-#
-#     def get_context_data(self, **kwargs):
-#         recipes = list(Recipe.objects.all())
-#         if not recipes:
-#             context = {'title': 'Случайные рецепты', 'message': 'Здесь пока ничего нет.'}
-#             return context
-#         context = {
-#             'title': 'Случайные рецепты',
-#             'recipes': recipes,
-#         }
-#         return context
-
 
 class AllRecipes(ListView):
     model = Recipe
@@ -64,6 +49,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, **kwargs):
+        categories = {f'{ctg.pk}': ctg for ctg in Category.objects.all()}
         if request.method == 'POST':
             form = AddRecipeForm(self.request.POST)
             if form.is_valid():
@@ -72,6 +58,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
                 steps = form.cleaned_data['steps']
                 duration = form.cleaned_data['duration']
                 ingredients = form.cleaned_data['ingredients']
+                category = categories[form.cleaned_data['category']]
                 author = get_user_model().objects.get(pk=self.request.user.pk)
                 Recipe(
                     name=name,
@@ -80,6 +67,7 @@ class AddRecipe(LoginRequiredMixin, TemplateView):
                     duration=duration,
                     ingredients=ingredients,
                     author=author,
+                    category=category,
                 ).save()
         return HttpResponseRedirect('/index/')
 
