@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.conf.urls.static import static
 
-urlpatterns = [
+from django.conf import settings
+
+urlpatterns = ([
     path('cookbook/', include('cookbook.urls')),
     path('', RedirectView.as_view(url='/cookbook/', permanent=True)),
     path('index/', RedirectView.as_view(url='/cookbook/', permanent=True)),
@@ -27,12 +30,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('login/', RedirectView.as_view(url='users/login/'), name='login'),
     path('users/', include('django.contrib.auth.urls')),
-]
+])
 
-# old auto-generated
-# ===========
-# urlpatterns = [
-#     path('', include('cookbook.urls')),
-#     path('index/', include('cookbook.urls')),
-#     path('admin/', admin.site.urls),
-# ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
