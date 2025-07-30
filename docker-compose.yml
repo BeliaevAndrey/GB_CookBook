@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./django_app
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "127.0.0.1:80:80"
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
