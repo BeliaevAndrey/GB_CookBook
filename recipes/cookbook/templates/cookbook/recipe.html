@@ -9,18 +9,24 @@
     <p class="recipe__description">{{ recipe.description }}</p>
     <h3>Ингредиенты</h3>
     <ol>
-    {% for ingredient in ingredients %}
+        {% for ingredient in ingredients %}
         <li class="recipe__li">{{ ingredient }}</li>
-    {% endfor %}
+        {% endfor %}
     </ol>
     <h3>Шаги приготовления</h3>
     <ol>
-    {% for step in steps %}
-    <li class="recipe__li">{{ step }}</li>
-    {% endfor %}
+        {% for step in steps %}
+        <li class="recipe__li">{{ step }}</li>
+        {% endfor %}
     </ol>
-    <hr>
     <p>Средняя продолжительность приготовления: {{ recipe.duration }}</p>
+    <hr>
+    {% if recipe.image %}
+    <div class="recipe__image_normal">
+    <img class="recipe__normal_pic" src="/media/{{ recipe.image }}" alt="image for: {{ recipe.name }}">
+    </div>
+    <hr>
+    {% endif %}
     <p class="recipe__author_sign">Разместил(а): {{ recipe.author }}</p>
 </div>
 {% endblock %}

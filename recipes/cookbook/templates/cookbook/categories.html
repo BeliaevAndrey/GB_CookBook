@@ -7,22 +7,27 @@
 
 <div>
     {% if message %}
-    <div class="recipe__div">
+    <div class="category__div">
         <h3>{{ message }}</h3>
     </div>
     {% else %}
-    {% for ctg in category %}
-    <div class="recipe__div">
+    {% for ctg, recipes in categories.items %}
+    <div class="category__div">
         <h3 class="recipe__head">
             {{ ctg.title }}
         </h3>
-        {% for recipe in ctg.relation_recipe.recipe %}
-            {{ recipe.name }}
+
+        {% for recipe in recipes %}
+        <p class="category__p_recipe_link">
+            <a href="{% url 'view_recipe' recipe.pk %}">
+                {{ recipe.name }}
+            </a>
+        </p>
         {% endfor %}
 
-        </div>
-
     </div>
+
+
     {% endfor %}
     {% endif %}
 </div>
