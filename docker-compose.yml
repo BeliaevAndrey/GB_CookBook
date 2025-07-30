@@ -1,12 +1,12 @@
-version: '3.8'
-
 services:
   web:
-    build: ./django_app
-    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    build: ./recipes
+    user: "1000:1000"
+    command: gunicorn recipes.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/app/static
-      - media_volume:/app/media
+      - /large/data4/cookbook/static:/app/static
+      - /large/data4/cookbook/media:/app/media
+      - /large/data4/cookbook/log:/app/log
     env_file:
       - .env
     depends_on:
@@ -15,24 +15,30 @@ services:
 
   db:
     image: postgres:15-alpine
+    user: "999:999"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - /large/data4/cookbook/postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: unless-stopped
 
   nginx:
     build: ./nginx
     volumes:
-      - static_volume:/app/static
-      - media_volume:/app/media
+      - /large/data4/cookbook/static:/app/static
+      - /large/data4/cookbook/media:/app/media
     ports:
       - "127.0.0.1:80:80"
     depends_on:
       - web
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  static_volume:
-  media_volume:
