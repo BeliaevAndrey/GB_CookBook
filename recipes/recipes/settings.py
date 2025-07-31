@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cookbook.apps.CookbookConfig',
     'users.apps.UsersConfig',
+    'cookbook.apps.CookbookConfig',
 ]
 
 MIDDLEWARE = [
