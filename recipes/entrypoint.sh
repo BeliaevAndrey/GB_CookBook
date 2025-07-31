@@ -5,12 +5,12 @@ set -e
 #while ! nc -z $DB_HOST $DB_PORT; do sleep 0.5; done
 #echo "PostgreSQL started"
 
-#echo "Applying auth migrations..."
-#python manage.py migrate auth
+echo "Applying auth migrations..."
+python manage.py migrate auth
 
-#echo "Applying users migrations..."
-#python manage.py migrate users
-#
+echo "Applying users migrations..."
+python manage.py migrate users
+
 #echo "Creating core tables with SQL..."
 #psql $DATABASE_URL <<EOF
 #CREATE TABLE IF NOT EXISTS cookbook_category (
@@ -33,9 +33,10 @@ set -e
 #);
 #EOF
 
-#echo "Applying cookbook migrations..."
+echo "Applying cookbook migrations..."
 #python manage.py migrate cookbook
-python manage.py migrate
+#python manage.py makemigrations
+#python manage.py migrate
 
 echo "Creating superuser..."
 if [ -z "$(python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); print(User.objects.filter(username='$ADMIN_USERNAME').exists()")" ]; then
