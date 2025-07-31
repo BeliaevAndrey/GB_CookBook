@@ -1,0 +1,68 @@
+.form__header {
+    font-weight: 800px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #ccc;
+}
+
+.helptext {
+    display: none;
+}
+
+label {
+    display: grid;
+}
+
+input{
+    width: 200px;
+    background-color: #eee;
+    border: solid 1px;
+    border-radius: 3px;
+}
+
+.form_button {
+    background: #ccc;
+    font-weight: 600;
+    padding: 10px;
+    margin: 10px;
+}
+
+li {
+    marker: none;
+    display: block;
+}
+
+.recipe__label {
+    width: 200px;
+    display: flex;
+    margin-left: 10px;
+}
+
+.recipe__name {
+    width: 500px;
+    height: 14px;
+    max-height: 14px;
+    background-color: #eee;
+    margin: 10px;
+}
+.recipe__field {
+    width: 500px;
+    height: 100px;
+    background-color: #eee;
+    margin: 10px;
+}
+
+.common__form {
+    display: flex;
+    flex-flow: column;
+}
+
+.service_forms__fields_div {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin: 20px;
+}
+.service_forms__save_div {
+    display: flex;
+}

@@ -5,11 +5,11 @@ set -e
 #while ! nc -z $DB_HOST $DB_PORT; do sleep 0.5; done
 #echo "PostgreSQL started"
 
-echo "Applying auth migrations..."
-python manage.py migrate auth
+#echo "Applying auth migrations..."
+#python manage.py migrate auth
 
 echo "Applying users migrations..."
-python manage.py migrate users
+python manage.py migrate users --noinput
 
 #echo "Creating core tables with SQL..."
 #psql $DATABASE_URL <<EOF
@@ -39,18 +39,18 @@ echo "Applying cookbook migrations..."
 #python manage.py migrate
 
 echo "Creating superuser..."
-if [ -z "$(python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); print(User.objects.filter(username='$ADMIN_USERNAME').exists()")" ]; then
-    python manage.py shell -c "\
-    from django.contrib.auth import get_user_model; \
-    User = get_user_model(); \
-    User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
+if [[ -z $(python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); print(User.objects.filter(username='$ADMIN_USERNAME').exists()") ]]; then
+    python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
     echo "Superuser created"
 else
     echo "Superuser already exists"
 fi
 
 echo "Collecting static files..."
-python manage.py collectstatic --clear
+python manage.py collectstatic --clear --noinput
+
+echo "Copying custom styles and images..."
+cp -r ./cutom_data_css_img/* ./static/
 
 echo "Creating cache table..."
 python manage.py createcachetable
