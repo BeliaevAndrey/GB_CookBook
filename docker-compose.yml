@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-#      - ./scripts/:/docker-entrypoint-initdb.d/
+      - ./scripts/sql/:/docker-entrypoint-initdb.d/
       - /large/data4/cookbook/postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
