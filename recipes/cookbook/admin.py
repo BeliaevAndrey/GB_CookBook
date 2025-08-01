@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import Category, Recipe
 
-admin.site.register(Category)
-admin.site.register(Recipe)
-
 
 class CategoryAdmin(admin.ModelAdmin):
     ordering = ('title', 'description')
@@ -61,3 +58,7 @@ class RecipeAdmin(admin.ModelAdmin):
             }
         ),
     ]
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Recipe, RecipeAdmin)
