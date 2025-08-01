@@ -33,8 +33,13 @@ python manage.py createcachetable
 #python manage.py migrate cookbook --noinput
 
 echo "Creating superuser..."
-python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
-echo "Superuser created"
-
+#if [[ -z $(python manage.py shell -c \
+#    "from django.contrib.auth import get_user_model; User = get_user_model(); print(User.objects.filter(username='$ADMIN_USERNAME').exists())" ]];
+#then
+#  python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
+#  echo "Superuser created"
+#else
+#   echo "Superuser already exists"
+#fi
 
 exec "$@"
