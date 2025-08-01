@@ -15,22 +15,22 @@ python manage.py migrate users --noinput
 #    description TEXT NOT NULL
 #);
 
-echo "Collecting static files..."
-python manage.py collectstatic --clear --noinput
-
-echo "Copying custom styles and images..."
-cp -r ./custom_data_css_img/* ./static/
+#echo "Collecting static files..."
+#python manage.py collectstatic --clear --noinput
+#
+#echo "Copying custom styles and images..."
+#cp -r ./custom_data_css_img/* ./static/
 
 echo "Creating cache table..."
 python manage.py createcachetable
 
 echo "Creating categories..."
-python manage.py createcachetable
+python manage.py fill_categories
 #
-#echo "Preparing cookbook migrations..."
-#python manage.py makemigrations cookbook --noinput
-#echo "Applying cookbook migrations..."
-#python manage.py migrate cookbook --noinput
+echo "Preparing migrations..."
+python manage.py makemigrations --noinput
+echo "Applying migrations..."
+python manage.py migrate --noinput
 
 echo "Creating superuser..."
 #if [[ -z $(python manage.py shell -c \
