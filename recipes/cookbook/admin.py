@@ -3,6 +3,7 @@ from .models import Category, Recipe
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title',)
     ordering = ('title', 'description')
     list_filter = ('title',)
     search_fields = ('title',)
@@ -20,7 +21,7 @@ class CategoryAdmin(admin.ModelAdmin):
             'Details',
             {
                 'classes': ['collapse'],
-                'fields': ['description']
+                'fields': ['title', 'description']
             }
         )
     ]
