@@ -165,20 +165,26 @@ a {
 }
 
 .recipe__image {
-    min-height: 150px;
-    min-width: 150px;
-    border: solid 1px;
+    max-height: 150px;
+    max-width: 150px;
+    height: 150px;
+    width: 150px;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
 
 .recipe__image_normal {
     margin: 20px;
-    margin-right: 10px;
-    margin-left: 50%;
     min-height: 150px;
     min-width: 150px;
     margin-right: 10px;
-    align: center;
+    display: flex;
+    justify-content: right;
+    padding-right: 30px;
 }
 
 .recipe__footer {
@@ -266,15 +272,12 @@ footer {
 
 .recipe__small_pic {
     height: 150px;
-    width: 150px;
+    width: auto;
     margin: 0px;
-    align-self: center;
-    vertical-align: middle;
+    display: block;
 }
 
 .recipe__normal_pic {
-    height: 100%;
-    width: 100%;
     max-height: 400px;
     max-width: 400px;
     margin: 0px;
