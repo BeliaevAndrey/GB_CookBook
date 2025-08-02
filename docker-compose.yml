@@ -1,6 +1,7 @@
 services:
 
   web:
+    container_name: cookbook-web
     build: ./recipes
     depends_on:
       db:
@@ -15,6 +16,7 @@ services:
     restart: unless-stopped
 
   db:
+    container_name: cookbook-db
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -36,6 +38,7 @@ services:
       - 5437:5432
 
   nginx:
+    container_name: cookbook-nginx
     build: ./nginx
     volumes:
       - /large/data4/cookbook/static:/app/static
