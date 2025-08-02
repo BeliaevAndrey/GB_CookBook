@@ -17,13 +17,6 @@ class CategoryAdmin(admin.ModelAdmin):
                 'fields': ['title', 'description']
             }
         ),
-        (
-            'Details',
-            {
-                'classes': ['collapse'],
-                'fields': ['title', 'description']
-            }
-        )
     ]
 
 
@@ -36,24 +29,21 @@ class RecipeAdmin(admin.ModelAdmin):
     fieldsets = [
         (
             None,
-         {
-             'classes': ['wide'],
-             'fields': ['name', 'category', 'description', 'author']
-         }
-         ),
+            {
+                'classes': ['wide'],
+                'fields': ['name', 'category', 'author']
+            }
+        ),
         (
             'Details',
             {
                 'classes': ['collapse'],
                 'fields': [
-                    'name',
-                    'category',
                     'description',
                     'ingredients',
                     'steps',
                     'duration',
                     'image',
-                    'author',
                     'add_date'
                 ]
             }
