@@ -1,5 +1,7 @@
 .idea/
-/static/
+reciipes/static/
+recipes/media/
 *.sqlite3
 *.log
 *.pyc
+.env

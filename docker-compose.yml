@@ -1,0 +1,50 @@
+services:
+
+  web:
+    container_name: cookbook-web
+    build: ./recipes
+    depends_on:
+      db:
+        condition: service_healthy
+    command: gunicorn recipes.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - /large/data4/cookbook/static:/app/static
+      - /large/data4/cookbook/media:/app/media
+      - /large/data4/cookbook/log:/app/log
+    env_file:
+      - ./recipes/.env
+    restart: unless-stopped
+
+  db:
+    container_name: cookbook-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./scripts/sql/:/docker-entrypoint-initdb.d/
+      - /large/data4/cookbook/postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    restart: unless-stopped
+    ports:
+      - 5437:5432
+
+  nginx:
+    container_name: cookbook-nginx
+    build: ./nginx
+    volumes:
+      - /large/data4/cookbook/static:/app/static
+      - /large/data4/cookbook/media:/app/media
+    ports:
+      - "127.0.0.1:80:80"
+    depends_on:
+      - web
+    restart: unless-stopped
