@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-p0%e7fo1x8yvqtys6e@p_ywh9@nocrx&r7y%y&204agm6ss337'
 
 SECRET_KEY = os.getenv('SECRET_KEY')
+SERVER_IP = os.getenv('SERVER_IP')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -29,10 +30,10 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '31.44.0.108', 
+    SERVER_IP,
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'http://31.44.0.108']
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', f'http://{SERVER_IP}']
 
 INTERNAL_IPS = [
     '127.0.0.1',
