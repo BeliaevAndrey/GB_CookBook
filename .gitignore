@@ -1,5 +1,5 @@
 .idea/
-reciipes/static/
+recipes/static/
 recipes/media/
 *.sqlite3
 *.log
