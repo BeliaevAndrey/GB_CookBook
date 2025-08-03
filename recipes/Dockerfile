@@ -17,9 +17,9 @@ COPY . .
 FROM environment as settings
 
 
-RUN python manage.py collectstatic --clear --noinput
+# RUN python manage.py collectstatic --clear --noinput
 
-RUN cp -r ./custom_data_css_img/* ./static/
+# RUN cp -r ./custom_data_css_img/* ./static/
 
 
 # RUN groupadd -g 1000 chef && \
@@ -29,5 +29,11 @@ RUN if [ ! -d "/app/log" ]; then mkdir "./log"; fi \
     if [ ! -d "/app/media" ]; then mkdir "./media"; fi
 
 RUN chown -R www-data:www-data /app
-RUN chown -R www-data:www-data ./static ./media ./log
+
+RUN chown -R www-data:www-data ./static
+
+RUN chown -R www-data:www-data /app/log
+
+RUN chown -R www-data:www-data /app/media
+
 USER www-data
