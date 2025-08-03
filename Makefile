@@ -21,7 +21,7 @@ help:
 	@echo "  down       - Down containers"
 	@echo "  restart    - Restart containers"
 	@echo "  logs       - Show containers logs"
-	@echo "  clean      - Down containers and clean images"
+	@echo "  clean      - Remove EVERYTHING: containers, volumes, DATABASE FILES, static, media, logs"
 	@echo "  full-clean - Full clean (containers, images, volumes)"
 	@echo ""
 	@echo "Django:"
@@ -58,8 +58,8 @@ clean:
 	docker compose down --volumes
 
 full-clean: clean
-	@@echo "Removing Docker-images..."
-	docker rmi $$(docker images -q "${PROJECT}*")
+	@@echo "Removing ALL: containers, volumes, database files, static, media, logs..."
+	./scripts/bash/total_cleaning.sh
 
 migrate:
 	@echo "Applying migrations..."
