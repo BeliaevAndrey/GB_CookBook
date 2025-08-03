@@ -44,7 +44,7 @@ services:
       - /cookbook/static:/app/static
       - /cookbook/media:/app/media
     ports:
-      - "127.0.0.1:80:80"
+      - "80:80"
     depends_on:
       - web
     restart: unless-stopped
