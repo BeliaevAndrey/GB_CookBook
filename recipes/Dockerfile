@@ -25,8 +25,8 @@ RUN cp -r ./custom_data_css_img/* ./static/
 # RUN groupadd -g 1000 chef && \
 #    useradd -u 1000 -g 1000 -m -d /app chef
 
-RUN if [ ! -d "/app/log" ]; then mkdir "./log"; fi \
-    if [ ! -d "/app/media" ]; then mkdir "./media"; fi
+RUN if [ ! -d "/app/log" ]; then mkdir "./log"; fi
+RUN if [ ! -d "/app/media" ]; then mkdir "./media"; fi
 
 RUN chown -R www-data:www-data /app
 RUN chown -R www-data:www-data ./static ./media ./log
