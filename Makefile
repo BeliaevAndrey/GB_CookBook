@@ -35,8 +35,8 @@ help:
 build:
 	@echo "Build Docker-images and set them up..."
 	docker compose up -d --build
-	./scripts/bash/initial_migrations.sh
-	./scripts/bash/create_admin.sh
+#	./scripts/bash/initial_migrations.sh
+#	./scripts/bash/create_admin.sh
 
 
 up:

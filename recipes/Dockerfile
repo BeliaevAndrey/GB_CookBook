@@ -22,8 +22,9 @@ RUN python manage.py collectstatic --clear --noinput
 RUN cp -r ./custom_data_css_img/* ./static/
 
 
-RUN groupadd -g 1000 chef && \
-    useradd -u 1000 -g 1000 -m -d /app chef
+# RUN groupadd -g 1000 chef && \
+#    useradd -u 1000 -g 1000 -m -d /app chef
 
-RUN chown -R chef:chef /app
-USER chef
+RUN chown -R www-data:www-data /app
+RUN chown -R www-data:www-data ./static ./media ./log
+USER www-data
