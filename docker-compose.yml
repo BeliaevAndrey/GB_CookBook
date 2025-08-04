@@ -47,4 +47,6 @@ services:
       - "80:80"
     depends_on:
       - web
+    env_file:
+      - ./nginx/.env
     restart: unless-stopped
