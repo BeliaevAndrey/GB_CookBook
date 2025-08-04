@@ -4,7 +4,7 @@ echo "Collect static"
 docker compose exec web python manage.py collectstatic --noinput
 
 echo "Copy service files to static"
-docker compose exec web cp -r ./custom_data_css_img/* ./static
+docker compose exec web cp -r ./recipes/custom_data_css_img/* ./static
 
 echo "Applying basic authentication migrations..."
 docker compose exec web python manage.py migrate auth
