@@ -8,9 +8,9 @@ services:
         condition: service_healthy
     command: gunicorn recipes.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - /cookbook/static:/app/static
-      - /cookbook/media:/app/media
-      - /cookbook/log:/app/log
+      - /cookbook_https/static:/app/static
+      - /cookbook_https/media:/app/media
+      - /cookbook_https/log:/app/log
     env_file:
       - ./recipes/.env
     restart: unless-stopped
@@ -24,7 +24,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - ./scripts/sql/:/docker-entrypoint-initdb.d/
-      - /cookbook/postgres_data:/var/lib/postgresql/data/
+      - /cookbook_https/postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
     healthcheck:
@@ -41,10 +41,11 @@ services:
     container_name: cookbook-nginx
     build: ./nginx
     volumes:
-      - /cookbook/static:/app/static
-      - /cookbook/media:/app/media
+      - /cookbook_https/static:/app/static
+      - /cookbook_https/media:/app/media
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - web
     env_file:

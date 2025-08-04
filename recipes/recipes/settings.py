@@ -83,10 +83,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'recipes.wsgi.application'
 
 # Security section
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
-SESSION_COOKIE_SECURE = False  # HTTP allow (when https is in use -> True)
-CSRF_COOKIE_SECURE = False  # HTTP allow (when https is in use -> True)
-SECURE_HSTS_SECONDS = 0  # off when in prod -> 31536000  # 1 year
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True    # HTTP allow (when http is in use -> False)
+CSRF_COOKIE_SECURE = True       # HTTP allow (when https is in use -> False)
+SECURE_SSL_REDIRECT = True      # Auto-redirect to https
+SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False  # -> True on Prod
 SECURE_HSTS_PRELOAD = False  # -> True on Prod
 SECURE_CONTENT_TYPE_NOSNIFF = True
