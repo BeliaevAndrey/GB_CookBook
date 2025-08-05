@@ -12,7 +12,7 @@ services:
       - /cookbook_https/media:/app/media
       - /cookbook_https/log:/app/log
     env_file:
-      - ./recipes/.env
+      - ./cookbook_https/env/recipes/.env
     restart: unless-stopped
 
   db:
@@ -26,7 +26,7 @@ services:
       - ./scripts/sql/:/docker-entrypoint-initdb.d/
       - /cookbook_https/postgres_data:/var/lib/postgresql/data/
     env_file:
-      - .env
+      - /cookbook_https/env/.env
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 10s
@@ -43,6 +43,7 @@ services:
     volumes:
       - /cookbook_https/static:/app/static
       - /cookbook_https/media:/app/media
+      - /cookbook_https/log/nginx:/var/log/nginx
     ports:
       - "80:80"
       - "443:443"
