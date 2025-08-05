@@ -12,7 +12,7 @@ services:
       - /cookbook_https/media:/app/media
       - /cookbook_https/log:/app/log
     env_file:
-      - ./cookbook_https/env/recipes/.env
+      - /cookbook_https/env/recipes/.env
     restart: unless-stopped
 
   db:
