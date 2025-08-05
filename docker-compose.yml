@@ -26,7 +26,7 @@ services:
       - ./scripts/sql/:/docker-entrypoint-initdb.d/
       - /cookbook_https/postgres_data:/var/lib/postgresql/data/
     env_file:
-      - /cookbook_https/env/.env
+      - /cookbook_https/env/db/.env
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 10s
